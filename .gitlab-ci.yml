@@ -1,6 +1,11 @@
-language: rust
-rust:
-    - stable
-cache: cargo
-script:
-    - cargo build
+image "rust:1.26"
+
+before_script:
+    - rustup update
+
+build:linux:
+    script:
+        - cargo build --release
+    artifacts:
+        paths:
+            - target/
