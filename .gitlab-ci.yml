@@ -1,11 +1,13 @@
-image "rust:1.26"
-
-before_script:
-    - rustup update
+stages:
+    - test
 
 build:linux:
+    image: rust:1.26
+    stage: test
+    
     script:
-        - cargo build --release
+        - cargo build --release --target=x86_64-unknown-linux-gnu
+    
     artifacts:
         paths:
             - target/
