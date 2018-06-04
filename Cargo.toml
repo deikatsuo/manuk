@@ -1,0 +1,10 @@
+[package]
+name = "manuk"
+version = "0.1.0"
+authors = ["Deri Herdianto <derryherdianto@gmail.com>"]
+
+[dependencies]
+actix = "0.5"
+actix-web = "0.6"
+env_logger = "0.5"
+tera = "0.11"

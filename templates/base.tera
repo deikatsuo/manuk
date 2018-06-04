@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% block head %}
+		{% for meta in head.meta %}
+			{{ meta }}
+		{% endfor %}
+
+		{% for css in head.css %}
+			{{ css }}
+		{% endfor %}
+
+		<title>{% block title %}{{ head.title }}{% endblock title %}</title>
+
+		{% for js in head.js %}
+			{{ js }}
+		{% endfor %}
+
+		{% for custom in head.custom %}
+			{{ custom }}
+		{% endfor %}
+
+	{% endblock head %}
+</head>
+<body>
+	{% block body %}
+
+	{% endblock body %}
+</body>
+</html>
