@@ -1,6 +1,6 @@
 // Static assets loader
 
-use super::{fs, Arc, Tera, HttpHandler, App, Logger};
+use super::{fs, Tera, HttpHandler, App, Logger};
 
 
 pub fn app() -> Box<HttpHandler> {
