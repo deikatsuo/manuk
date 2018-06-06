@@ -1,9 +1,9 @@
 stages:
-    - test
+    - build
 
-build:linux:
+manuk:build:
     image: rust:1.26
-    stage: test
+    stage: build
     
     script:
         - cargo build --release --target=x86_64-unknown-linux-gnu
