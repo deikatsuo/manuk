@@ -1,4 +1,4 @@
-use super::{http, error, Error, HttpRequest, HttpHandler, App,
+use super::{fs, http, error, Error, HttpRequest, HttpHandler, App,
     AppState, ContextState, Rc, Responder, Logger, State, Tera, HttpResponse};
 
 fn index(state: State<AppState>) -> Result<HttpResponse, Error> {
@@ -15,7 +15,9 @@ fn index(state: State<AppState>) -> Result<HttpResponse, Error> {
 
 pub fn app(context: Rc<ContextState>) -> Box<HttpHandler> {
     App::with_state(AppState { context })
+        .prefix("/")
         .middleware(Logger::new("\nClient %a \nRequest \"%r\" \nStatus \"%s\" \n%{User-Agent}i"))
         .resource("", |r| r.method(http::Method::GET).with(index))
+        .handler("/asset", fs::StaticFiles::new("./asset/"))
         .boxed()
 }

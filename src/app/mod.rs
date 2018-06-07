@@ -1,4 +1,3 @@
-mod asset;
 mod main;
 
 use super::{fs, http, error, Error, App, AppState, ContextState, HttpRequest,
@@ -12,9 +11,10 @@ pub fn load_apps() -> Vec<Box<HttpHandler>> {
     let context = Rc::new(
         ContextState { tera: tera.clone() }
     );
+
     // Register app here
+    // App need to be boxed
     vec![
-        asset::app(),
         main::app(context.clone())
     ]
 }
