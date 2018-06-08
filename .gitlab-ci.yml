@@ -1,8 +1,9 @@
+image: rust:1.26
+
 stages:
     - build
 
-manuk:build:
-    image: rust:1.26
+manuk:
     stage: build
     
     script:
