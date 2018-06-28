@@ -1,4 +1,4 @@
-use super::{fs, http, error, Error, HttpRequest, HttpHandler, App,
+use {fs, http, error, Error, HttpRequest, HttpHandler, App,
     AppState, ContextState, Rc, Responder, Logger, State, Tera, HttpResponse};
 
 fn index(state: State<AppState>) -> Result<HttpResponse, Error> {

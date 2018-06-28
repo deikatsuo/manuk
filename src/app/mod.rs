@@ -1,7 +1,6 @@
 mod main;
 
-use super::{fs, http, error, Error, App, AppState, ContextState, HttpRequest,
-    HttpHandler, Responder, Rc, State, Logger, Tera, HttpResponse};
+use {Rc, HttpHandler, ContextState};
 
 /// App loader
 pub fn load_apps() -> Vec<Box<HttpHandler>> {

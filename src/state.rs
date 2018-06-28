@@ -1,7 +1,4 @@
-mod lang;
-mod template;
-
-use super::{Rc, Tera};
+use {Rc, Tera};
 
 /// App State
 pub struct AppState {
