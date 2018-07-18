@@ -1,24 +1,19 @@
-extern crate env_logger;
 extern crate actix;
 extern crate actix_web;
+extern crate env_logger;
 #[macro_use]
 extern crate tera;
 
-mod state;
 mod app;
+mod state;
 
-use std::rc::Rc;
 use actix_web::{
-    error, fs, http, App, Error, HttpResponse, HttpRequest, Responder, State,
-    server::{
-        self, HttpHandler
-    },
-    middleware::{
-        Logger
-    }
+    error, fs, http, middleware::Logger, server::{self, HttpHandler}, App, Error, HttpRequest,
+    HttpResponse, Responder, State,
 };
-use tera::Tera;
 use state::{AppState, ContextState};
+use std::rc::Rc;
+use tera::Tera;
 
 fn main() {
     // Create a Logger

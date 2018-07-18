@@ -1,12 +1,15 @@
-use {fs, http, error, Error, HttpRequest, HttpHandler, App,
-    AppState, ContextState, Rc, Responder, Logger, State, Tera, HttpResponse};
+use {
+    error, fs, http, App, AppState, ContextState, Error, HttpHandler, HttpRequest, HttpResponse,
+    Logger, Rc, Responder, State, Tera,
+};
 
 fn index(state: State<AppState>) -> Result<HttpResponse, Error> {
     let mut ctx = super::super::tera::Context::new();
     ctx.add("name", &"Deri".to_owned());
     ctx.add("text", &"Welcome!".to_owned());
     let s = state
-        .context.tera
+        .context
+        .tera
         .render("index.tera", &ctx)
         .map_err(|_| error::ErrorInternalServerError("Template error"))?;
 
@@ -16,7 +19,9 @@ fn index(state: State<AppState>) -> Result<HttpResponse, Error> {
 pub fn app(context: Rc<ContextState>) -> Box<HttpHandler> {
     App::with_state(AppState { context })
         .prefix("/")
-        .middleware(Logger::new("\nClient %a \nRequest \"%r\" \nStatus \"%s\" \n%{User-Agent}i"))
+        .middleware(Logger::new(
+            "\nClient %a \nRequest \"%r\" \nStatus \"%s\" \n%{User-Agent}i",
+        ))
         .resource("", |r| r.method(http::Method::GET).with(index))
         .handler("/asset", fs::StaticFiles::new("./asset/"))
         .boxed()
